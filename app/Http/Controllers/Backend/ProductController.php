@@ -4,8 +4,14 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
+use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use App\Jobs\SendNewProductNotification;
+use App\Mail\ProductCreated;
+use App\Models\User;
+use Illuminate\Support\Facades\Mail;
 
 class ProductController extends Controller
 {
@@ -23,8 +29,21 @@ class ProductController extends Controller
 
     public function store(ProductFormRequest $request){
         $request->validated();
-        $this->productService->store($request);
+        // $this->productService->store($request);
+        $input =[
+            'name' => $request->name,
+            'category_id' =>$request->category_id,
+            'quantity' => $request->quantity,
+            'price' => $request->price,
+        ];
+        $product = Product::create($input);
+        $product->slug = Str::slug($product->name . '-' . $product->id);
+        $product->save();
+        SendNewProductNotification::dispatch($product);
         toastr()->addSuccess('', 'Product Created Successfully');
+      
+       
+       
         return redirect()->back();
     }
 

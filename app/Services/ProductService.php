@@ -2,6 +2,7 @@
 
 namespace App\Services;
 
+use App\Jobs\SendNewProductNotification;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Subcategory;
@@ -27,6 +28,8 @@ class ProductService{
         $product = Product::create($input);
         $product->slug = Str::slug($product->name . '-' . $product->id);
         $product->save();
+
+      
     }
 
 
