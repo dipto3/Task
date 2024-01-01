@@ -10,10 +10,10 @@ use Illuminate\Http\Request;
 
 class PurchaseController extends Controller
 {
-    public function purchaseProduct(Request $request, $productId)
+    public function purchaseProduct(Request $request, $id)
     {
         $quantity = $request->input('quantity');
-        $product = Product::findOrFail($productId);
+        $product = Product::findOrFail($id);
         if ($product->quantity >= $quantity) {
             $product->decrement('quantity', $quantity);
             $user = auth()->user();
@@ -24,7 +24,6 @@ class PurchaseController extends Controller
                 'quantity' => $quantity,
             ]);
             event(new ProductPurchased($product, $quantity));
-
             // dd('event fired');
             return redirect()->back();
         } else {

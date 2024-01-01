@@ -32,16 +32,8 @@ class ProductController extends Controller
     public function store(ProductFormRequest $request)
     {
         $request->validated();
-        // $this->productService->store($request);
-        $input = [
-            'name' => $request->name,
-            'category_id' => $request->category_id,
-            'quantity' => $request->quantity,
-            'price' => $request->price,
-        ];
-        $product = Product::create($input);
-        $product->slug = Str::slug($product->name.'-'.$product->id);
-        $product->save();
+        $product = $this->productService->store($request);
+  
         SendNewProductNotification::dispatch($product);
         toastr()->addSuccess('', 'Product Created Successfully');
 

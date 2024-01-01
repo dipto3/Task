@@ -28,7 +28,7 @@ class ProductService
         $product = Product::create($input);
         $product->slug = Str::slug($product->name.'-'.$product->id);
         $product->save();
-
+        return $product;
     }
 
     public function index($request)
