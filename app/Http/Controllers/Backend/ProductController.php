@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Exports\ProductExport;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
+use App\Imports\ProductImport;
 use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
@@ -12,6 +14,9 @@ use App\Jobs\SendNewProductNotification;
 use App\Mail\ProductCreated;
 use App\Models\User;
 use Illuminate\Support\Facades\Mail;
+use Maatwebsite\Excel\Facades\Excel;
+
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx\Rels;
 
 class ProductController extends Controller
 {
@@ -80,5 +85,15 @@ class ProductController extends Controller
         $this->productService->remove($id);
         toastr()->addInfo('', 'Product Removed Successfully.');
         return redirect()->back();
+    }
+
+    public function export(){
+        return Excel::download(new ProductExport,'product.xlsx');
+    }
+
+    public function import(Request $request){
+       Excel::import(new ProductImport, request()->file('file'), \Maatwebsite\Excel\Excel::XLSX);
+       toastr()->addInfo('', 'Product Imported Successfully.');
+       return redirect()->back();
     }
 }

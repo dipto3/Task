@@ -44,5 +44,7 @@ Route::group(['middleware' => 'admin'], function () {
     Route::get('/edit-product/{id}', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/update-product/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/remove-product/{id}', [ProductController::class, 'remove'])->name('product.remove');
+    Route::get('/export-products', [ProductController::class, 'export'])->name('export');
+    Route::post('/import-products', [ProductController::class, 'import'])->name('import');
 });
 require __DIR__.'/auth.php';

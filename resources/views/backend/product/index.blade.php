@@ -6,8 +6,27 @@
 
             <div class="card-body">
 
-                <h4 class="card-title">Product List</h4>
-                <a href="{{ route('product.create') }}" class="btn btn-info">Create Product</a>
+                <h4 class="card-title ">Product List</h4>
+                <div class="row">
+
+              
+                    <div class="col-md-2">
+                        <a href="{{ route('product.create') }}" class="btn btn-info">Create Product</a>
+                    </div>
+                    <div class="col-md-6" >
+                        <form action="{{ route('import') }}" enctype="multipart/form-data" method="post">
+                            @csrf
+                            <input type="file" name="file">
+                            <button class="btn btn-info" type="submit">Import</button>
+                        </form>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="{{ route('export') }}" style="float: right;" class="btn btn-primary">Export</a>
+                    </div>
+                    
+
+            </div>
+
                 <div class="table-responsive pt-3">
                     <table class="table table-bordered">
                         <thead>
