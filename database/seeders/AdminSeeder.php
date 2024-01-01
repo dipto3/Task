@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
@@ -14,13 +13,13 @@ class AdminSeeder extends Seeder
      */
     public function run(): void
     {
-        $user =User::where('email','admin@gmail.com')->first();
-        if(is_null($user)){
+        $user = User::where('email', 'admin@gmail.com')->first();
+        if (is_null($user)) {
 
-            $user= User::create([
-                'name' => "Admin",
-                'role' => "admin",
-                'email' =>"admin@gmail.com",
+            $user = User::create([
+                'name' => 'Admin',
+                'role' => 'admin',
+                'email' => 'admin@gmail.com',
                 'password' => Hash::make('123456'),
             ]);
         }

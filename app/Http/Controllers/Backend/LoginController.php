@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function login(){
+    public function login()
+    {
         return view('backend.auth.login');
     }
 
-    public function login_check(Request $request){
+    public function login_check(Request $request)
+    {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
@@ -28,7 +30,6 @@ class LoginController extends Controller
             'email' => 'The provided credentials do not match our records.',
         ])->onlyInput('email');
     }
-
 
     public function logout(Request $request)
     {

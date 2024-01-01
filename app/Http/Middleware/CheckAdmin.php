@@ -16,14 +16,14 @@ class CheckAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        
-            // Check if the user has the "admin" role
-            if (Auth::user()->role ==='admin') {
-                return $next($request);
-               
-            }
-            return redirect('/admin/login')->with('error', 'Unauthorized access');
-        
-       
+
+        // Check if the user has the "admin" role
+        if (Auth::user()->role === 'admin') {
+            return $next($request);
+
+        }
+
+        return redirect('/admin/login')->with('error', 'Unauthorized access');
+
     }
 }

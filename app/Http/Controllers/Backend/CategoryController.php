@@ -19,7 +19,8 @@ class CategoryController extends Controller
     public function index()
     {
         $data = $this->categoryService->index();
-        return view('backend.category.index',$data);
+
+        return view('backend.category.index', $data);
     }
 
     /**
@@ -38,16 +39,20 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryFormRequest $request){
+    public function store(CategoryFormRequest $request)
+    {
 
         $request->validated();
         $this->categoryService->store($request);
         toastr()->addSuccess('', 'Category Created Successfully.');
+
         return redirect()->back();
     }
+
     public function change_status(Request $request)
     {
         $this->categoryService->change_status($request);
+
         return response()->json([
             'code' => '200',
         ]);
@@ -59,7 +64,6 @@ class CategoryController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-   
 
     /**
      * Show the form for editing the specified resource.
@@ -69,8 +73,9 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
-      $data = $this->categoryService->edit($id);
-      return view('backend.category.edit',$data);
+        $data = $this->categoryService->edit($id);
+
+        return view('backend.category.edit', $data);
     }
 
     /**
@@ -83,8 +88,9 @@ class CategoryController extends Controller
     public function update(CategoryFormRequest $request, $id)
     {
         $request->validated();
-        $this->categoryService->update( $request, $id);
+        $this->categoryService->update($request, $id);
         toastr()->addSuccess('', 'Category Updated Successfully.');
+
         return redirect()->back();
     }
 

@@ -3,21 +3,21 @@
 namespace App\Jobs;
 
 use App\Mail\ProductCreated;
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
-use App\Models\Product;
-use App\Models\User;
 use Illuminate\Support\Facades\Mail;
 
 class SendNewProductNotification implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     public $product;
-    
+
     /**
      * Create a new job instance.
      */
@@ -31,7 +31,7 @@ class SendNewProductNotification implements ShouldQueue
      */
     public function handle(): void
     {
-        $users = User::where('role','user')->get();
+        $users = User::where('role', 'user')->get();
 
         foreach ($users as $user) {
             // Dispatch the ProductCreated mail
