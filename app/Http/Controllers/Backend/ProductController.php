@@ -22,6 +22,7 @@ class ProductController extends Controller
 
     public function create()
     {
+         //business logic inside app/Services/ProductService 
         $data = $this->productService->create();
 
         return view('backend.product.create', $data);
@@ -30,6 +31,7 @@ class ProductController extends Controller
     public function store(ProductFormRequest $request)
     {
         $request->validated();
+         //business logic inside app/Services/ProductService 
         $product = $this->productService->store($request);
 
         SendNewProductNotification::dispatch($product);
@@ -40,6 +42,7 @@ class ProductController extends Controller
 
     public function index(Request $request)
     {
+         //business logic inside app/Services/ProductService 
         $data = $this->productService->index($request);
 
         return view('backend.product.index', $data);
@@ -47,6 +50,7 @@ class ProductController extends Controller
 
     public function change_status(Request $request)
     {
+         //business logic inside app/Services/ProductService 
         $this->productService->change_status($request);
 
         return response()->json([
@@ -64,6 +68,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
 
+         //business logic inside app/Services/ProductService 
         $this->productService->update($request, $id);
         toastr()->addSuccess('', 'Product Updated Successfully.');
 
@@ -72,6 +77,7 @@ class ProductController extends Controller
 
     public function remove($id)
     {
+         //business logic inside app/Services/ProductService 
         $this->productService->remove($id);
         toastr()->addInfo('', 'Product Removed Successfully.');
 
@@ -80,13 +86,14 @@ class ProductController extends Controller
 
     public function export()
     {
-
+        //for export file
         return Excel::download(new ProductExport, 'product.xlsx');
 
     }
 
     public function import(Request $request)
     {
+        //bulk product upload
         Excel::import(new ProductImport, request()->file('file'), \Maatwebsite\Excel\Excel::XLSX);
         toastr()->addInfo('', 'Product Imported Successfully.');
 

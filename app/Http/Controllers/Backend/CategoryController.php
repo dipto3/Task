@@ -18,6 +18,7 @@ class CategoryController extends Controller
 
     public function index()
     {
+        //business logic app/Services/CategoryService 
         $data = $this->categoryService->index();
 
         return view('backend.category.index', $data);
@@ -43,6 +44,7 @@ class CategoryController extends Controller
     {
 
         $request->validated();
+        //business logic inside app/Services/CategoryService
         $this->categoryService->store($request);
         toastr()->addSuccess('', 'Category Created Successfully.');
 
@@ -51,6 +53,7 @@ class CategoryController extends Controller
 
     public function change_status(Request $request)
     {
+         //business logic inside app/Services/CategoryService
         $this->categoryService->change_status($request);
 
         return response()->json([
@@ -73,6 +76,7 @@ class CategoryController extends Controller
      */
     public function edit($id)
     {
+         //business logic app/Services/CategoryService 
         $data = $this->categoryService->edit($id);
 
         return view('backend.category.edit', $data);
@@ -88,6 +92,7 @@ class CategoryController extends Controller
     public function update(CategoryFormRequest $request, $id)
     {
         $request->validated();
+         //business logic app/Services/CategoryService 
         $this->categoryService->update($request, $id);
         toastr()->addSuccess('', 'Category Updated Successfully.');
 
@@ -102,6 +107,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+         //business logic app/Services/CategoryService 
         $this->categoryService->remove($id);
         toastr()->addInfo('', 'Category Removed Successfully.');
 

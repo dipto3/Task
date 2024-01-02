@@ -34,7 +34,7 @@ class SendNewProductNotification implements ShouldQueue
         $users = User::where('role', 'user')->get();
 
         foreach ($users as $user) {
-            // Dispatch the ProductCreated mail
+            // dispatch ProductCreated mail
             Mail::to($user->email)->send(new ProductCreated($this->product));
         }
     }

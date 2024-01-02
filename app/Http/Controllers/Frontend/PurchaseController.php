@@ -23,7 +23,7 @@ class PurchaseController extends Controller
             'product_id' => $product->id,
             'quantity' => $quantity,
         ]);
-
+        // dispatch ProductPurchased event
         event(new ProductPurchased($product, $quantity));
 
         toastr()->addSuccess('', 'Product Purchased Successfully.');
