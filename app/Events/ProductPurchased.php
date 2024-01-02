@@ -11,12 +11,11 @@ use Illuminate\Queue\SerializesModels;
 class ProductPurchased
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    public  $product;
-    public $quantity;
+    
     /**
      * Create a new event instance.
      */
-    public function __construct(Product $product,  $quantity)
+    public function __construct(public Product $product, public $quantity)
     {
         $this->product = $product;
         $this->quantity = $quantity;
