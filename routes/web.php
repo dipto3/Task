@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 */
 //Frontend routes...
 Route::get('/', [HomeController::class, 'frontend']);
-Route::group(['middleware' => 'admin'], function () {
+Route::group(['middleware' => 'auth'], function () {
 
     Route::get('/home', [HomeController::class, 'home'])->name('home');
     Route::get('/product-details/{id}', [HomeController::class, 'details'])->name('details');
@@ -28,7 +28,7 @@ Route::group(['middleware' => 'admin'], function () {
 
 });
 // admin routes...
-Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
+Route::get('/admin/login', [LoginController::class, 'login'])->name('admin.login');
 Route::post('/admin/login-check', [LoginController::class, 'login_check'])->name('login.check');
 Route::post('/admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
 Route::group(['middleware' => 'admin'], function () {
