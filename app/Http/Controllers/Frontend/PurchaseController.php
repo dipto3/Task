@@ -26,6 +26,7 @@ class PurchaseController extends Controller
             event(new ProductPurchased($product, $quantity));
 
             // dd('event fired');
+            toastr()->addSuccess('', 'Product Purchased Successfully.');
             return redirect()->back();
         } else {
             return response()->json(['message' => 'Low quantity']);

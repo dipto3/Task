@@ -28,7 +28,7 @@
                 </div>
               </div>
               <div class="col">
-                <img src="assets/images/sliders/s_1.webp" class="img-fluid" alt="...">
+                <img src="frontend/assets/images/sliders/s_1.webp" class="img-fluid" alt="...">
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@
                 </div>
               </div>
               <div class="col">
-                <img src="assets/images/sliders/s_2.webp" class="img-fluid" alt="...">
+                <img src="frontend/assets/images/sliders/s_2.webp" class="img-fluid" alt="...">
               </div>
             </div>
           </div>
@@ -60,7 +60,7 @@
                 </div>
               </div>
               <div class="col">
-                <img src="assets/images/sliders/s_3.webp" class="img-fluid" alt="...">
+                <img src="frontend/assets/images/sliders/s_3.webp" class="img-fluid" alt="...">
               </div>
             </div>
           </div>
@@ -76,7 +76,7 @@
                 </div>
               </div>
               <div class="col">
-                <img src="assets/images/sliders/s_4.webp" class="img-fluid" alt="...">
+                <img src="frontend/assets/images/sliders/s_4.webp" class="img-fluid" alt="...">
               </div>
             </div>
           </div>
@@ -92,7 +92,7 @@
                 </div>
               </div>
               <div class="col">
-                <img src="assets/images/sliders/s_5.webp" class="img-fluid" alt="...">
+                <img src="frontend/assets/images/sliders/s_5.webp" class="img-fluid" alt="...">
               </div>
             </div>
           </div>
