@@ -11,8 +11,9 @@
 
 <p>A new product has been created:</p>
 
-<p>Name:</p>
-<p>Description: </p>
+<p>Name: {{ $product->name }}</p>
+<p>category: {{ $product->category->name }}</p>
+<p>Price: {{ $product->price }}</p>
 
 <p>Thank you!</p>
 </body>

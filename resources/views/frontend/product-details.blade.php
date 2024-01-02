@@ -45,7 +45,7 @@
                     <hr class="my-3">
                     <div class="product-info">
                         <h6 class="fw-bold mb-3">{{ $product->description }}</h6>
-                        {{-- {{ $products->description }} --}}
+                       
                     </div>
 
                 </div>

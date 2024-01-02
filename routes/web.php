@@ -18,22 +18,22 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//Frontend routes...
+Route::get('/', [HomeController::class, 'frontend']);
+Route::group(['middleware' => 'admin'], function () {
 
-Route::get('/', function () {
-    return view('welcome');
+    Route::get('/home', [HomeController::class, 'home'])->name('home');
+    Route::get('/product-details/{id}', [HomeController::class, 'details'])->name('details');
+    Route::post('/purchase/{id}', [PurchaseController::class, 'purchaseProduct'])->name('purchase.product');
+
 });
-
-Route::get('/home', [HomeController::class, 'home'])->name('home');
-Route::get('/product-details/{id}', [HomeController::class, 'details'])->name('details');
+// admin routes...
 Route::get('/admin/login', [LoginController::class, 'login'])->name('login');
 Route::post('/admin/login-check', [LoginController::class, 'login_check'])->name('login.check');
-Route::post('/purchase/{id}', [PurchaseController::class, 'purchaseProduct'])
-    ->name('purchase.product');
 Route::post('/admin/logout', [LoginController::class, 'logout'])->name('admin.logout');
-
 Route::group(['middleware' => 'admin'], function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-    // Your admin routes go here
+
     //category routes...
     Route::resource('categories', CategoryController::class);
     Route::post('/change-status', [CategoryController::class, 'change_status'])->name('status');

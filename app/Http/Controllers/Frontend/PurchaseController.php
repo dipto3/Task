@@ -24,6 +24,7 @@ class PurchaseController extends Controller
                 'quantity' => $quantity,
             ]);
             event(new ProductPurchased($product, $quantity));
+
             // dd('event fired');
             return redirect()->back();
         } else {

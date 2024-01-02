@@ -30,7 +30,7 @@ class ProductCreated extends Mailable implements ShouldQueue
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Product Created',
+            subject: 'Product Created: '.$this->product->name,
         );
     }
 

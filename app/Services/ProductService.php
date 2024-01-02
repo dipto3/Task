@@ -28,13 +28,14 @@ class ProductService
         $product = Product::create($input);
         $product->slug = Str::slug($product->name.'-'.$product->id);
         $product->save();
+
         return $product;
     }
 
     public function index($request)
     {
 
-        $products = Product::latest()->paginate(5);
+        $products = Product::orderBy('id', 'DESC')->paginate(5);
 
         return compact('products');
 
@@ -58,13 +59,13 @@ class ProductService
     public function update($request, $id)
     {
 
-        $input = [
+        $product = Product::find($id);
+        $product->update([
             'name' => $request->name,
             'category_id' => $request->category_id,
             'quantity' => $request->quantity,
             'price' => $request->price,
-        ];
-        $product = Product::where('id', $id)->update($input);
+        ]);
     }
 
     public function remove($id)

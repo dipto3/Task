@@ -7,10 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\ProductFormRequest;
 use App\Imports\ProductImport;
 use App\Jobs\SendNewProductNotification;
-use App\Models\Product;
 use App\Services\ProductService;
 use Illuminate\Http\Request;
-use Illuminate\Support\Str;
 use Maatwebsite\Excel\Facades\Excel;
 
 class ProductController extends Controller
@@ -33,7 +31,7 @@ class ProductController extends Controller
     {
         $request->validated();
         $product = $this->productService->store($request);
-  
+
         SendNewProductNotification::dispatch($product);
         toastr()->addSuccess('', 'Product Created Successfully');
 
@@ -63,9 +61,9 @@ class ProductController extends Controller
         return view('backend.product.edit', $data);
     }
 
-    public function update(ProductFormRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $request->validated();
+
         $this->productService->update($request, $id);
         toastr()->addSuccess('', 'Product Updated Successfully.');
 
@@ -82,7 +80,9 @@ class ProductController extends Controller
 
     public function export()
     {
+
         return Excel::download(new ProductExport, 'product.xlsx');
+
     }
 
     public function import(Request $request)

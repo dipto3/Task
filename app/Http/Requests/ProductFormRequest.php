@@ -28,4 +28,17 @@ class ProductFormRequest extends FormRequest
             'quantity' => 'required|numeric',
         ];
     }
+
+    public function messages(): array
+    {
+        return [
+            'name.required' => 'The name field is required.',
+            'category_id.required' => 'The category field is required.',
+            'category_id.exists' => 'The selected category is invalid.',
+            'price.required' => 'The price field is required.',
+            'price.numeric' => 'The price must be a number.',
+            'quantity.required' => 'The quantity field is required.',
+            'quantity.numeric' => 'The quantity must be a number.',
+        ];
+    }
 }

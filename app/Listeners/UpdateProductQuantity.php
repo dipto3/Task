@@ -23,5 +23,6 @@ class UpdateProductQuantity
         $quantity = $event->quantity;
 
         $product->decrement('quantity', $quantity);
+        // dd($quantity);
     }
 }
